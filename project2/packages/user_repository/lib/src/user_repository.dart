@@ -13,4 +13,6 @@ abstract interface class UserRepository {
   Future<void> logOut();
 
   Future<MyUser> getMyUser(String myUserId);
+
+  Future<void> setUserData(MyUser user);
 }
