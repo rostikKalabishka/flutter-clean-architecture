@@ -7,7 +7,7 @@ part 'sign_up_state.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   final UserRepository userRepository;
-  SignUpBloc(UserRepository myUserRepository)
+  SignUpBloc({required UserRepository myUserRepository})
       : userRepository = myUserRepository,
         super(SignUpInitial()) {
     on<SignUpRequiredEvent>((event, emit) async {
