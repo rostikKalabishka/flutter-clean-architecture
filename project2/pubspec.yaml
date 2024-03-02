@@ -40,12 +40,13 @@ dependencies:
   bloc: ^8.1.3
   image_picker: ^1.0.4
   image_cropper: ^5.0.0
+  intl: ^0.18.1
 
   firebase_auth: ^4.8.0
   user_repository:
     path: packages/user_repository
-  # post_repository:
-  #   path: packages/post_repository
+  post_repository:
+    path: packages/post_repository
 dev_dependencies:
   flutter_test:
     sdk: flutter
