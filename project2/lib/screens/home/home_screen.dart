@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:project2/blocs/my_user_bloc/my_user_bloc.dart';
 import 'package:project2/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:project2/blocs/update_user_info_bloc/update_user_info_bloc.dart';
+import 'package:project2/screens/home/post_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,7 +28,14 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                builder: (BuildContext context) => const PostScreen(),
+              ),
+            );
+          },
           child: const Icon(CupertinoIcons.add),
         ),
         backgroundColor: Theme.of(context).colorScheme.background,
