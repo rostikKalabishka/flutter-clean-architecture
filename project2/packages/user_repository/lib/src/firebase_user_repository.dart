@@ -1,7 +1,9 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:user_repository/user_repository.dart';
 
@@ -79,6 +81,23 @@ class FirebaseUserRepository implements UserRepository {
   Future<void> setUserData(MyUser user) async {
     try {
       await usersCollection.doc(user.id).set(user.toEntity().toDocument());
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+  }
+
+  @override
+  Future<String> uploadPicture(String file, String userId) async {
+    try {
+      File imageFile = File(file);
+      Reference referenceStorageRef =
+          FirebaseStorage.instance.ref().child('$userId/PP/${userId}_load');
+
+      await referenceStorageRef.putFile(imageFile);
+      String url = await referenceStorageRef.getDownloadURL();
+      await usersCollection.doc(userId).update({'picture': url});
+      return url;
     } catch (e) {
       log(e.toString());
       rethrow;

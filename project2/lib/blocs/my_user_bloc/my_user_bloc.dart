@@ -10,7 +10,7 @@ part 'my_user_state.dart';
 
 class MyUserBloc extends Bloc<MyUserEvent, MyUserState> {
   final UserRepository userRepository;
-  MyUserBloc(UserRepository myUserRepository)
+  MyUserBloc({required UserRepository myUserRepository})
       : userRepository = myUserRepository,
         super(const MyUserState.loading()) {
     on<GetMyUser>((event, emit) async {
